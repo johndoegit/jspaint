@@ -13,8 +13,8 @@
 		<link rel="icon" href="images/icons/windows.ico" sizes="16x16,32x32,48x48" type="image/icon">
 		<script type="text/javascript">
 			// Partial support for IE with a general polyfill
-			if(/MSIE \d|Trident.*rv:/.test(navigator.userAgent)){
-				document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js"><\/script>');
+			if(!window.fetch){
+				document.write('<script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=default,fetch"><\/script>');
 				
 				// document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.4/fetch.min.js"><\/script>');
 				// this polyfill doesn't support base64 data URIs, leading to a confusing error message when loading the document from localStorage
@@ -27,7 +27,7 @@
 				window.onerror = function(){
 					var current_time = +new Date;
 					if(!last_error_message_time || (current_time > last_error_message_time + error_message_debounce_ms)){
-						alert("Internet Explorer is not supported!");
+						alert("Your browser is not supported!");
 						last_error_message_time = +new Date;
 					}
 				};
